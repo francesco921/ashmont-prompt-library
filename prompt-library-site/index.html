@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashmont Prompt Library</title>
+<meta name="description" content="Companion prompt library for Medical AI in Practice (Ashmont Research Publications): every PROMPT LAB prompt in ChatGPT, Gemini and Claude variants.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='52' height='52' fill='none' stroke='%231F6E5C' stroke-width='9'/><rect x='38' y='38' width='52' height='52' fill='none' stroke='%23171717' stroke-width='9'/><rect x='40' y='40' width='14' height='14' fill='none' stroke='%23B4432B' stroke-width='7'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#ffffff;--panel:#f4f6f5;--line:#dfe5e2;--ink:#171717;--ink2:#4b524e;--muted:#767d79;
+  --accent:#1f6e5c;--accent-soft:#eaf3f0;--warn:#b4432b;--code-bg:#f0f3f1;--code-line:#dae1de;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101312;--panel:#171b19;--line:#2a302c;--ink:#eef0ee;--ink2:#c3c9c5;--muted:#8b928d;
+  --accent:#54c2a4;--accent-soft:#16241f;--warn:#e08061;--code-bg:#171b19;--code-line:#2b312d;
+}}
+:root[data-theme="dark"]{
+  --bg:#101312;--panel:#171b19;--line:#2a302c;--ink:#eef0ee;--ink2:#c3c9c5;--muted:#8b928d;
+  --accent:#54c2a4;--accent-soft:#16241f;--warn:#e08061;--code-bg:#171b19;--code-line:#2b312d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+[hidden]{display:none!important}
+a{color:var(--accent)}
+.mono{font-family:'Geist Mono','JetBrains Mono',ui-monospace,monospace}
+.wrap{max-width:900px;margin:0 auto;padding:0 1.25rem}
+header.top{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.75rem;padding-bottom:.75rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.6rem}
+.logo{width:26px;height:26px;flex:none}
+.brand b{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.04em;font-weight:700}
+.brand span{display:block;font-size:.72rem;color:var(--muted)}
+.count{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+.hero{padding:2.5rem 0 1.25rem}
+.kicker{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:clamp(1.7rem,4.4vw,2.4rem);line-height:1.12;margin:.5rem 0 .8rem;font-weight:700;text-wrap:balance}
+.lede{color:var(--ink2);line-height:1.62;max-width:64ch;margin:0 0 .8rem}
+.meta{font-size:.83rem;color:var(--muted);margin:0}
+.controls{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;padding:.5rem 0 1.25rem}
+#q{flex:1 1 240px;min-width:190px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:.6rem .8rem;color:var(--ink);font:inherit;font-size:.92rem}
+#q:focus{outline:2px solid var(--accent);outline-offset:1px}
+.pill{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.71rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink2);border-radius:999px;padding:.45rem .8rem;cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.jump{display:grid;grid-template-columns:repeat(auto-fill,minmax(2.3rem,1fr));gap:.35rem;padding-bottom:2.25rem}
+.jump a{display:flex;align-items:center;justify-content:center;aspect-ratio:1;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink2);text-decoration:none;font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.72rem;font-weight:600}
+.jump a:hover,.jump a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+article.card{border-top:1px solid var(--line);padding:2.25rem 0 2.5rem;scroll-margin-top:5rem}
+.chead{display:flex;gap:.85rem;align-items:flex-start;flex-wrap:wrap}
+.cnum{font-family:'Geist Mono','JetBrains Mono',monospace;font-weight:700;font-size:1.5rem;color:var(--accent);line-height:1;min-width:2.3rem;flex:none}
+.ctext{flex:1 1 240px}
+.ceyebrow{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ctext h2{font-size:1.22rem;margin:.2rem 0 0;font-weight:700;text-wrap:balance}
+.use{color:var(--ink2);font-size:.92rem;line-height:1.6;margin:.8rem 0 0}
+.tabs{display:flex;gap:.35rem;margin-top:1.2rem;flex-wrap:wrap}
+.tab{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.71rem;letter-spacing:.04em;text-transform:uppercase;font-weight:600;padding:.45rem .8rem;border:1px solid var(--line);border-bottom:none;border-radius:7px 7px 0 0;background:var(--panel);color:var(--ink2);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--code-bg);border-color:var(--code-line);color:var(--accent)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pane{border:1px solid var(--code-line);background:var(--code-bg);border-radius:0 8px 8px 8px;padding:1rem 1.05rem .9rem}
+.ptext{font-family:'IBM Plex Mono','JetBrains Mono',ui-monospace,monospace;font-size:.845rem;line-height:1.62;white-space:pre-wrap;margin:0;color:var(--ink)}
+.pfoot{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-top:.85rem;flex-wrap:wrap}
+.wc{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.71rem;color:var(--muted)}
+.copy{font-family:'Geist Mono','JetBrains Mono',monospace;font-size:.71rem;letter-spacing:.04em;text-transform:uppercase;font-weight:600;background:var(--ink);color:var(--bg);border:1px solid var(--ink);border-radius:6px;padding:.45rem .85rem;cursor:pointer}
+.copy:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.notes{margin-top:1rem;padding:.85rem .95rem;background:var(--accent-soft);border:1px solid var(--line);border-radius:8px;font-size:.86rem;line-height:1.6;color:var(--ink2)}
+.notes b{color:var(--ink)}
+.foot{border-top:1px solid var(--line);margin-top:1rem;padding:1.4rem 0 3.5rem;color:var(--muted);font-size:.79rem;line-height:1.6}
+#status{padding:2.5rem 0;color:var(--muted);font-size:.9rem}
+.none{display:none;padding:2rem 0;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="10" width="52" height="52" fill="none" stroke="#1F6E5C" stroke-width="9"/><rect x="38" y="38" width="52" height="52" fill="none" stroke="currentColor" stroke-width="9"/><rect x="40" y="40" width="14" height="14" fill="none" stroke="#B4432B" stroke-width="7"/></svg>
+      <div><b>ASHMONT RESEARCH PUBLICATIONS</b><span>Prompt Library</span></div>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <div class="kicker">Companion to the printed book</div>
+  <h1>Ashmont Prompt Library</h1>
+  <p class="lede">Every PROMPT LAB from <em>Medical AI in Practice: Prompting, Protocols, and Clinical Implementation Standards</em>, in three platform-tailored variants. Scan the QR code beside any chapter's PROMPT LAB, or jump to its number below. Each variant is a complete, ready-to-copy prompt, adapted to what that assistant actually does well.</p>
+  <p class="meta">Ashmont Research Publications &middot; Second Edition &middot; Free to use, no account needed. This page is maintained in place, so printed QR codes keep working.</p>
+</div>
+
+<div class="wrap controls">
+  <input id="q" type="search" placeholder="Search prompts, chapters, use cases..." aria-label="Search the prompt library">
+  <button class="pill" data-f="all" aria-pressed="true">All</button>
+  <button class="pill" data-f="chatgpt" aria-pressed="false">ChatGPT</button>
+  <button class="pill" data-f="gemini" aria-pressed="false">Gemini</button>
+  <button class="pill" data-f="claude" aria-pressed="false">Claude</button>
+</div>
+
+<nav class="wrap jump" id="jump" aria-label="Jump to chapter"></nav>
+<main class="wrap" id="cards"></main>
+<p class="wrap none" id="none">No prompts match that search.</p>
+<p class="wrap" id="status">Loading the prompt library...</p>
+
+<div class="wrap foot">
+  <p>These prompts are drafting, reasoning and reference aids for a licensed clinician or authorised administrator, who remains responsible for the output. ChatGPT, Gemini and Claude are not FDA-cleared medical devices, and no prompt here replaces clinical judgment, chart verification, or your institution's AI governance policy. Never paste identifiable patient information into a consumer-tier account: Chapter 29 of the book has the full pre-prompt safety checklist.</p>
+  <p class="mono">Ashmont Research Publications &middot; companion to Medical AI in Practice</p>
+</div>
+
+<script src="d1.js"></script>
+<script src="d2.js"></script>
+<script>
+(function(){
+  var PLATS=[{k:'chatgpt',l:'ChatGPT'},{k:'gemini',l:'Gemini'},{k:'claude',l:'Claude'}];
+  var filter='all',term='';
+  var cardsEl=document.getElementById('cards'),jumpEl=document.getElementById('jump');
+  var noneEl=document.getElementById('none'),statusEl=document.getElementById('status');
+
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function words(s){return (s.trim().match(/\S+/g)||[]).length;}
+
+  function card(e){
+    var el=document.createElement('article');
+    el.className='card';
+    el.id='ch-'+e.n;
+    el.dataset.blob=(e.ct+' '+e.t+' '+e.u+' '+e.no+' '+e.v.join(' ')).toLowerCase();
+    var tabs=PLATS.map(function(p,i){return '<button class="tab" role="tab" aria-selected="'+(i===0?'true':'false')+'" data-p="'+p.k+'">'+p.l+'</button>';}).join('');
+    var panes=PLATS.map(function(p,i){
+      return '<div class="pane" data-pane="'+p.k+'"'+(i===0?'':' hidden')+'>'+
+        '<p class="ptext">'+esc(e.v[i])+'</p>'+
+        '<div class="pfoot"><span class="wc">'+words(e.v[i])+' words &middot; '+p.l+' variant</span>'+
+        '<button class="copy" data-i="'+i+'">Copy prompt</button></div></div>';
+    }).join('');
+    el.innerHTML='<div class="chead"><div class="cnum">'+(e.n<10?'0'+e.n:e.n)+'</div>'+
+      '<div class="ctext"><div class="ceyebrow">Part '+e.pt+' &middot; Chapter '+e.n+' &middot; '+esc(e.ct)+'</div>'+
+      '<h2>'+esc(e.t)+'</h2></div></div>'+
+      '<p class="use">'+esc(e.u)+'</p>'+
+      '<div class="tabs" role="tablist" aria-label="Platform variant">'+tabs+'</div>'+panes+
+      '<div class="notes"><b>Which assistant, and why:</b> '+esc(e.no)+'</div>';
+    var tabEls=el.querySelectorAll('.tab');
+    tabEls.forEach(function(t){
+      t.addEventListener('click',function(){
+        tabEls.forEach(function(x){x.setAttribute('aria-selected',x===t?'true':'false');});
+        el.querySelectorAll('[data-pane]').forEach(function(p){p.hidden=p.dataset.pane!==t.dataset.p;});
+      });
+    });
+    el.querySelectorAll('.copy').forEach(function(b){
+      b.addEventListener('click',function(){
+        var text=e.v[+b.dataset.i],label=b.textContent;
+        function ok(){b.textContent='Copied';setTimeout(function(){b.textContent=label;},1600);}
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(ok).catch(function(){legacy(text,ok);});
+        }else{legacy(text,ok);}
+      });
+    });
+    return el;
+  }
+
+  function legacy(text,ok){
+    try{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);ok();}catch(e){}
+  }
+
+  function apply(){
+    var any=false;
+    document.querySelectorAll('.card').forEach(function(c){
+      var okSearch=!term||c.dataset.blob.indexOf(term)!==-1;
+      var okPlat=filter==='all'||c.dataset.blob.indexOf(filter)!==-1;
+      var vis=okSearch&&okPlat;
+      c.style.display=vis?'':'none';
+      if(vis)any=true;
+    });
+    noneEl.style.display=any?'none':'block';
+  }
+
+  function render(){
+    var list=(window.P||[]).slice().sort(function(a,b){return a.n-b.n;});
+    if(!list.length){statusEl.textContent='The prompt library could not load. Please refresh the page.';return;}
+    var jf=document.createDocumentFragment(),cf=document.createDocumentFragment();
+    list.forEach(function(e){
+      var a=document.createElement('a');
+      a.href='#ch-'+e.n;a.textContent=e.n;a.title='Chapter '+e.n+': '+e.ct;
+      jf.appendChild(a);
+      cf.appendChild(card(e));
+    });
+    jumpEl.appendChild(jf);cardsEl.appendChild(cf);
+    document.getElementById('count').textContent=list.length+' prompts';
+    statusEl.hidden=true;
+    if(location.hash){
+      var t=document.querySelector(location.hash);
+      if(t){setTimeout(function(){t.scrollIntoView({block:'start'});},40);}
+    }
+  }
+
+  document.querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.pill').forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');filter=b.dataset.f;apply();
+    });
+  });
+  document.getElementById('q').addEventListener('input',function(ev){term=ev.target.value.trim().toLowerCase();apply();});
+
+  render();
+})();
+</script>
+</body>
+</html>
